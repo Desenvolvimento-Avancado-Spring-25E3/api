@@ -1,0 +1,57 @@
+{
+	"info": {
+		"_postman_id": "47e03f9f-afd9-4805-b888-639f9f821551",
+		"name": "api-elberth",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "47319845",
+		"_collection_link": "https://mit-infnet-java.postman.co/workspace/Team-Workspace~7bf80e07-6340-4176-8b7f-f913430facd9/collection/47319845-47e03f9f-afd9-4805-b888-639f9f821551?action=share&source=collection_link&creator=47319845"
+	},
+	"item": [
+		{
+			"name": "vendedor",
+			"item": [
+				{
+					"name": "obterPorId",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/vendedores/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"vendedores",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "obterLista",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/vendedores",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"vendedores"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

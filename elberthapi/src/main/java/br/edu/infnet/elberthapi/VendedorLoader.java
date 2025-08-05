@@ -35,19 +35,23 @@ public class VendedorLoader implements ApplicationRunner {
 			campos = linha.split(";");
 			
 			Endereco endereco = new Endereco();			
-			endereco.setCep("12345678");
-			endereco.setLocalidade("Rio de Janeiro");
+			endereco.setCep(campos[7]);
+			endereco.setLocalidade(campos[8]);
 			
-			Vendedor vendedor = new Vendedor();				
+			Vendedor vendedor = new Vendedor();
 			vendedor.setNome(campos[0]);
 			vendedor.setMatricula(Integer.valueOf(campos[1]));
 			vendedor.setSalario(Double.valueOf(campos[2]));
 			vendedor.setEhAtivo(Boolean.valueOf(campos[3]));
+			vendedor.setCpf(campos[4]);
+			vendedor.setEmail(campos[5]);
+			vendedor.setTelefone(campos[6]);
 			
 			vendedor.setEndereco(endereco);
 			
 			vendedorService.salvar(vendedor);
 
+			//TODO Imprimir os vendedores após a leitura do arquivo
 			System.out.println(vendedor);
 			
 			linha = leitura.readLine();

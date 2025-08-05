@@ -9,7 +9,7 @@ public abstract class Pessoa {
 	private String cpf;
 	private String telefone;
 	
-	//TODO criação do construtor
+	//TODO Criação do construtor de pessoa com nome, email, cpf e telefone
 	
 	@Override
 	public String toString() {

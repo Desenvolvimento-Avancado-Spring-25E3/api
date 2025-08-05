@@ -1,6 +1,9 @@
 package br.edu.infnet.elberthapi.controller;
 
+import java.util.List;
+
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -18,8 +21,12 @@ public class VendedorController {
 	}
 	
 	@GetMapping
-	public Vendedor obterVendedor() {
-		
-		return vendedorService.obter();
+	public List<Vendedor> obterLista(){
+		return vendedorService.obterLista();
 	}
+	
+	@GetMapping(value = "/{id}")
+	public Vendedor obterPorId(@PathVariable Integer id) {
+		return vendedorService.obterPorId(id);
+	}	
 }

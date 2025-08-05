@@ -7,7 +7,9 @@ public class Vendedor extends Pessoa {
 	private boolean ehAtivo;
 	private Endereco endereco;
 	
-	//TODO construtor do vendedor
+	//TODO construtor padrão do vendedor para marcar o vendedor como ativo
+	
+	//TODO construtor com os campos de pessoa e os demais campos de vendedor
 	
 	@Override
 	public String toString() {

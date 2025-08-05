@@ -2,6 +2,7 @@ package br.edu.infnet.elberthapi.model.domain;
 
 public class Endereco {
 
+	//TODO atualizar com os demais campos do viaCep
 	private String cep;
 	private String localidade;
 		
