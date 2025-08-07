@@ -49,13 +49,15 @@ public class VendedorLoader implements ApplicationRunner {
 			
 			vendedor.setEndereco(endereco);
 			
-			vendedorService.salvar(vendedor);
+			vendedorService.incluir(vendedor);
 
 			//TODO Imprimir os vendedores após a leitura do arquivo
 			System.out.println(vendedor);
 			
 			linha = leitura.readLine();
 		}
+		
+		//TODO chamada da funcionalidade de alteração
 		
 		System.out.println("- " + vendedorService.obterLista().size());
 
