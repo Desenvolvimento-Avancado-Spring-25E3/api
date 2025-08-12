@@ -1,22 +1,26 @@
 package br.edu.infnet.elberthapi.model.service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.atomic.AtomicInteger;
 
 import org.springframework.stereotype.Service;
 
 import br.edu.infnet.elberthapi.model.domain.Vendedor;
 import br.edu.infnet.elberthapi.model.domain.exceptions.VendedorInvalidoException;
 import br.edu.infnet.elberthapi.model.domain.exceptions.VendedorNaoEncontradoException;
+import br.edu.infnet.elberthapi.model.repository.VendedorRepository;
 
 @Service
 public class VendedorService implements CrudService<Vendedor, Integer> {
+	
+	private final VendedorRepository vendedorRepository;
+	
+	public VendedorService(VendedorRepository vendedorRepository) {
+		this.vendedorRepository = vendedorRepository;
+	}
 
 	private final Map<Integer, Vendedor> mapa = new ConcurrentHashMap<Integer, Vendedor>();
-	private final AtomicInteger nextId = new AtomicInteger(1);
 	
 	private void validar(Vendedor vendedor) {
 		if(vendedor == null) {
@@ -33,15 +37,11 @@ public class VendedorService implements CrudService<Vendedor, Integer> {
 		
 		validar(vendedor);
 		
-		if(vendedor.getId() != null && vendedor.getId() != 0) {
+		if(vendedor.getId() != null && vendedor.getId() > 0) {
 			throw new IllegalArgumentException("Um novo vendedor não pode ter um ID na inclusão!");			
 		}
-		
-		vendedor.setId(nextId.getAndIncrement());		
-		
-		mapa.put(vendedor.getId(), vendedor);
-		
-		return vendedor;
+
+		return vendedorRepository.save(vendedor);
 	}
 
 	@Override
@@ -51,6 +51,7 @@ public class VendedorService implements CrudService<Vendedor, Integer> {
 			throw new IllegalArgumentException("O ID para alteração não pode ser nulo/zero!");			
 		}
 		
+		//TODO imagine que existe uma regra de negócio que alguns campos não pode ser alterados, tais como: e-mail e matricula
 		validar(vendedor);
 		
 		obterPorId(id);
@@ -64,15 +65,10 @@ public class VendedorService implements CrudService<Vendedor, Integer> {
 
 	@Override
 	public void excluir(Integer id) {
-		if(id == null || id == 0) {
-			throw new IllegalArgumentException("O ID para exclusão não pode ser nulo/zero!");			
-		}
 		
-		if(!mapa.containsKey(id)) {
-			throw new VendedorNaoEncontradoException("O vendedor com ID " + id + " não foi encontrado!");
-		}
+		Vendedor vendedor = obterPorId(id);
 
-		mapa.remove(id);
+		vendedorRepository.delete(vendedor);
 	}
 
 	public Vendedor inativar(Integer id) {
@@ -83,12 +79,12 @@ public class VendedorService implements CrudService<Vendedor, Integer> {
 		
 		Vendedor vendedor = obterPorId(id);
 		
-		if(!vendedor.isEhAtivo()) {
+		if(!vendedor.isAtivo()) {
 			System.out.println("Vendedor " + vendedor.getNome() + " já está inativo!");
 			return vendedor;
 		}
 		
-		vendedor.setEhAtivo(false);
+		vendedor.setAtivo(false);
 		
 		mapa.put(vendedor.getId(), vendedor);
 		
@@ -98,18 +94,16 @@ public class VendedorService implements CrudService<Vendedor, Integer> {
 	@Override
 	public List<Vendedor> obterLista() {
 		
-		return new ArrayList<Vendedor>(mapa.values());
+		return vendedorRepository.findAll();
 	}
 
 	@Override
 	public Vendedor obterPorId(Integer id) {
 
-		Vendedor vendedor = mapa.get(id);
-		
-		if(vendedor == null) {
-			throw new IllegalArgumentException("Imposível obter o vendedor pelo ID " + id);
+		if(id == null || id <= 0) {
+			throw new IllegalArgumentException("O ID para exclusão não pode ser nulo/zero!");			
 		}
-		
-		return vendedor;
+
+		return vendedorRepository.findById(id).orElseThrow(() -> new VendedorNaoEncontradoException("O vendedor com ID " + id + " não foi encontrado!"));
 	}
 } 

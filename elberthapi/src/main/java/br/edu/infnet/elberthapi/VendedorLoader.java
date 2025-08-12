@@ -2,6 +2,7 @@ package br.edu.infnet.elberthapi;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.util.List;
 
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
@@ -42,7 +43,7 @@ public class VendedorLoader implements ApplicationRunner {
 			vendedor.setNome(campos[0]);
 			vendedor.setMatricula(Integer.valueOf(campos[1]));
 			vendedor.setSalario(Double.valueOf(campos[2]));
-			vendedor.setEhAtivo(Boolean.valueOf(campos[3]));
+			vendedor.setAtivo(Boolean.valueOf(campos[3]));
 			vendedor.setCpf(campos[4]);
 			vendedor.setEmail(campos[5]);
 			vendedor.setTelefone(campos[6]);
@@ -51,16 +52,14 @@ public class VendedorLoader implements ApplicationRunner {
 			
 			vendedorService.incluir(vendedor);
 
-			//TODO Imprimir os vendedores após a leitura do arquivo
-			System.out.println(vendedor);
-			
 			linha = leitura.readLine();
 		}
 		
-		//TODO chamada da funcionalidade de alteração
-		
-		System.out.println("- " + vendedorService.obterLista().size());
+		//TODO chamada das demais funcionalidades
 
+		List<Vendedor> vendedores = vendedorService.obterLista();
+		vendedores.forEach(System.out::println);
+		
 		leitura.close();
 	}
 }

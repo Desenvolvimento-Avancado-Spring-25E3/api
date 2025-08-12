@@ -1,7 +1,15 @@
 package br.edu.infnet.elberthapi.model.domain;
 
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.MappedSuperclass;
+
+@MappedSuperclass
 public abstract class Pessoa {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
 	private String nome;
@@ -14,7 +22,8 @@ public abstract class Pessoa {
 	@Override
 	public String toString() {
 
-		return String.format("%d - %s - %s - %s - %s", id, nome, email, cpf, telefone);
+		return String.format("id=%d, nome=%s, email=%s, cpf=%s, telefone=%s",
+                id, nome, email, cpf, telefone);
 	}
 	
 	public abstract String obterTipo();

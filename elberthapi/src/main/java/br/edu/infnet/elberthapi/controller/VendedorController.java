@@ -2,6 +2,8 @@ package br.edu.infnet.elberthapi.controller;
 
 import java.util.List;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -26,8 +28,11 @@ public class VendedorController {
 	}
 	
 	@PostMapping
-	public Vendedor incluir(@RequestBody Vendedor vendedor) {
-		return vendedorService.incluir(vendedor);
+	public ResponseEntity<Vendedor> incluir(@RequestBody Vendedor vendedor) {
+		
+		Vendedor novoVendedor = vendedorService.incluir(vendedor);
+		
+		return ResponseEntity.status(HttpStatus.CREATED).body(novoVendedor);
 	}
 		
 	@PutMapping(value = "/{id}")
@@ -36,8 +41,10 @@ public class VendedorController {
 	}
 	
 	@DeleteMapping(value = "/{id}")
-	public void excluir(@PathVariable Integer id) {
+	public ResponseEntity<Void> excluir(@PathVariable Integer id) {
 		vendedorService.excluir(id);
+		
+		return ResponseEntity.noContent().build();
 	}
 	
 	@PatchMapping(value = "/{id}/inativar")
@@ -46,8 +53,15 @@ public class VendedorController {
 	}
 	
 	@GetMapping
-	public List<Vendedor> obterLista(){
-		return vendedorService.obterLista();
+	public ResponseEntity<List<Vendedor>> obterLista(){
+		
+		List<Vendedor> lista = vendedorService.obterLista();
+		
+		if(lista.isEmpty()) {
+			return ResponseEntity.noContent().build();
+		}
+		
+		return ResponseEntity.ok(lista);
 	}
 	
 	@GetMapping(value = "/{id}")
