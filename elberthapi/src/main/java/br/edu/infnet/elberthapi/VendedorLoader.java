@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 
 import br.edu.infnet.elberthapi.model.domain.Endereco;
 import br.edu.infnet.elberthapi.model.domain.Vendedor;
+import br.edu.infnet.elberthapi.model.domain.exceptions.VendedorInvalidoException;
 import br.edu.infnet.elberthapi.model.service.VendedorService;
 
 @Component
@@ -50,7 +51,13 @@ public class VendedorLoader implements ApplicationRunner {
 			
 			vendedor.setEndereco(endereco);
 			
-			vendedorService.incluir(vendedor);
+			try {
+				vendedorService.incluir(vendedor);
+			} catch (VendedorInvalidoException e) {
+				System.err.println("Problema na inclusão do vendedor: " + e.getMessage());
+			} catch (Exception e) {
+				System.err.println("Deu erro! " + e.getMessage());
+			}
 
 			linha = leitura.readLine();
 		}

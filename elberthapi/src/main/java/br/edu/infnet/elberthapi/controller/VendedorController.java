@@ -15,7 +15,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.edu.infnet.elberthapi.model.domain.Vendedor;
+import br.edu.infnet.elberthapi.model.domain.exceptions.VendedorInvalidoException;
 import br.edu.infnet.elberthapi.model.service.VendedorService;
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/api/vendedores")
@@ -28,16 +30,26 @@ public class VendedorController {
 	}
 	
 	@PostMapping
-	public ResponseEntity<Vendedor> incluir(@RequestBody Vendedor vendedor) {
+	public ResponseEntity<Vendedor> incluir(@Valid @RequestBody Vendedor vendedor) {
 		
-		Vendedor novoVendedor = vendedorService.incluir(vendedor);
+		try {
+			Vendedor novoVendedor = vendedorService.incluir(vendedor);
+			
+			return ResponseEntity.status(HttpStatus.CREATED).body(novoVendedor);
 		
-		return ResponseEntity.status(HttpStatus.CREATED).body(novoVendedor);
+		} catch (VendedorInvalidoException e) {
+			return ResponseEntity.badRequest().build();
+
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+		}		
 	}
 		
 	@PutMapping(value = "/{id}")
-	public Vendedor alterar(@PathVariable Integer id, @RequestBody Vendedor vendedor) {
-		return vendedorService.alterar(id, vendedor);
+	public ResponseEntity<Vendedor> alterar(@PathVariable Integer id, @RequestBody Vendedor vendedor) {
+		Vendedor vendedorAlterado = vendedorService.alterar(id, vendedor);
+		
+		return ResponseEntity.ok(vendedorAlterado);
 	}
 	
 	@DeleteMapping(value = "/{id}")
@@ -48,8 +60,10 @@ public class VendedorController {
 	}
 	
 	@PatchMapping(value = "/{id}/inativar")
-	public Vendedor inativar(@PathVariable Integer id) {
-		return vendedorService.inativar(id);
+	public ResponseEntity<Vendedor> inativar(@PathVariable Integer id) {
+		Vendedor vendedor = vendedorService.inativar(id);
+		
+		return ResponseEntity.ok(vendedor);
 	}
 	
 	@GetMapping
@@ -65,7 +79,10 @@ public class VendedorController {
 	}
 	
 	@GetMapping(value = "/{id}")
-	public Vendedor obterPorId(@PathVariable Integer id) {
-		return vendedorService.obterPorId(id);
+	public ResponseEntity<Vendedor> obterPorId(@PathVariable Integer id) {
+		
+		Vendedor vendedor = vendedorService.obterPorId(id);
+		
+		return ResponseEntity.ok(vendedor);
 	}	
 }

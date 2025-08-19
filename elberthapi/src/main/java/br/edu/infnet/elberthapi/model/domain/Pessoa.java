@@ -4,6 +4,9 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 
 @MappedSuperclass
 public abstract class Pessoa {
@@ -12,9 +15,18 @@ public abstract class Pessoa {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
+	@Size(min = 3, max = 50, message = "O nome deve estar entre 3 e 50 caracteres.")
 	private String nome;
+	
+	@NotBlank(message = "O e-mail é obrigatório.")
+	@Email(message = "O e-mail está inválido.")
 	private String email;
+	
+	//"XXX.XXX.XXX-XX"
+	//TODO @Pattern(regexp
 	private String cpf;
+	
+	//(XX) XXXXX-XXXX OU (XX) XXXX-XXXX
 	private String telefone;
 	
 	//TODO Criação do construtor de pessoa com nome, email, cpf e telefone
