@@ -11,62 +11,62 @@ import jakarta.validation.constraints.NotNull;
 @Entity
 public class Vendedor extends Pessoa {
 
-	@NotNull
-	private int matricula;
-	
-	@Min(value = 0)
-	private double salario;
-	
-	private boolean ativo;
-	
-	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "endereco_id")
-	@Valid
-	private Endereco endereco;
-	
-	//TODO construtor padrão do vendedor para marcar o vendedor como ativo
-	
-	//TODO construtor com os campos de pessoa e os demais campos de vendedor
-	
-	@Override
-	public String toString() {
-		return String.format("Vendedor{%s, matricula=%d, salario=%.2f, ehAtivo=%s, %s", super.toString(), matricula, salario, ativo ? "ativo" : "inativo", endereco);
-	}
+    @NotNull(message = "A matrícula é obrigatória.")
+    @Min(value = 1, message = "A matrícula deve ser um número positivo.")
+    private int matricula;
+    
+    @NotNull(message = "O salário é obrigatório.")
+    @Min(value = 0, message = "O salário não pode ser negativo.")
+    private double salario;
+    
+    private boolean ativo;
+    
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "endereco_id")
+    @Valid
+    private Endereco endereco;
 
-	@Override
-	public String obterTipo() {
-		return "Vendedor";
-	}
+    @Override
+    public String toString() {
+        return String.format("Vendedor{%s, matricula=%d, salario=%.2f, ehAtivo=%s, %s}", 
+                super.toString(), matricula, salario, ativo ? "ativo" : "inativo", endereco);
+    }
 
-	public int getMatricula() {
-		return matricula;
-	}
+    @Override
+    public String obterTipo() {
+        return "Vendedor";
+    }
 
-	public void setMatricula(int matricula) {
-		this.matricula = matricula;
-	}
+    // Getters e Setters (conforme o código original)
+    public int getMatricula() {
+        return matricula;
+    }
 
-	public double getSalario() {
-		return salario;
-	}
+    public void setMatricula(int matricula) {
+        this.matricula = matricula;
+    }
 
-	public void setSalario(double salario) {
-		this.salario = salario;
-	}
+    public double getSalario() {
+        return salario;
+    }
 
-	public boolean isAtivo() {
-		return ativo;
-	}
+    public void setSalario(double salario) {
+        this.salario = salario;
+    }
 
-	public void setAtivo(boolean ativo) {
-		this.ativo = ativo;
-	}
+    public boolean isAtivo() {
+        return ativo;
+    }
 
-	public Endereco getEndereco() {
-		return endereco;
-	}
+    public void setAtivo(boolean ativo) {
+        this.ativo = ativo;
+    }
 
-	public void setEndereco(Endereco endereco) {
-		this.endereco = endereco;
-	}
+    public Endereco getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(Endereco endereco) {
+        this.endereco = endereco;
+    }
 }

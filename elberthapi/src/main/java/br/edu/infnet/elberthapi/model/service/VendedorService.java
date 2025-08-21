@@ -10,6 +10,7 @@ import br.edu.infnet.elberthapi.model.domain.Vendedor;
 import br.edu.infnet.elberthapi.model.domain.exceptions.VendedorInvalidoException;
 import br.edu.infnet.elberthapi.model.domain.exceptions.VendedorNaoEncontradoException;
 import br.edu.infnet.elberthapi.model.repository.VendedorRepository;
+import jakarta.transaction.Transactional;
 
 @Service
 public class VendedorService implements CrudService<Vendedor, Integer> {
@@ -19,8 +20,6 @@ public class VendedorService implements CrudService<Vendedor, Integer> {
 	public VendedorService(VendedorRepository vendedorRepository) {
 		this.vendedorRepository = vendedorRepository;
 	}
-
-	private final Map<Integer, Vendedor> mapa = new ConcurrentHashMap<Integer, Vendedor>();
 	
 	private void validar(Vendedor vendedor) {
 		if(vendedor == null) {
@@ -33,6 +32,7 @@ public class VendedorService implements CrudService<Vendedor, Integer> {
 	}
 	
 	@Override
+	@Transactional
 	public Vendedor incluir(Vendedor vendedor) {
 		
 		validar(vendedor);
@@ -45,25 +45,24 @@ public class VendedorService implements CrudService<Vendedor, Integer> {
 	}
 
 	@Override
+	@Transactional
 	public Vendedor alterar(Integer id, Vendedor vendedor) {
 
 		if(id == null || id == 0) {
 			throw new IllegalArgumentException("O ID para alteração não pode ser nulo/zero!");			
 		}
 		
-		//TODO imagine que existe uma regra de negócio que alguns campos não pode ser alterados, tais como: e-mail e matricula
 		validar(vendedor);
 		
 		obterPorId(id);
 		
 		vendedor.setId(id);
-
-		mapa.put(vendedor.getId(), vendedor);
 		
-		return vendedor;
+		return vendedorRepository.save(vendedor);
 	}
 
 	@Override
+	@Transactional
 	public void excluir(Integer id) {
 		
 		Vendedor vendedor = obterPorId(id);
@@ -71,6 +70,7 @@ public class VendedorService implements CrudService<Vendedor, Integer> {
 		vendedorRepository.delete(vendedor);
 	}
 
+	@Transactional
 	public Vendedor inativar(Integer id) {
 
 		if(id == null || id == 0) {
@@ -85,10 +85,8 @@ public class VendedorService implements CrudService<Vendedor, Integer> {
 		}
 		
 		vendedor.setAtivo(false);
-		
-		mapa.put(vendedor.getId(), vendedor);
-		
-		return vendedor;
+
+		return vendedorRepository.save(vendedor);
 	}
 	
 	@Override

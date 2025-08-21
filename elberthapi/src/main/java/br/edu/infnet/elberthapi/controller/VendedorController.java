@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.edu.infnet.elberthapi.model.domain.Vendedor;
-import br.edu.infnet.elberthapi.model.domain.exceptions.VendedorInvalidoException;
 import br.edu.infnet.elberthapi.model.service.VendedorService;
 import jakarta.validation.Valid;
 
@@ -31,18 +30,9 @@ public class VendedorController {
 	
 	@PostMapping
 	public ResponseEntity<Vendedor> incluir(@Valid @RequestBody Vendedor vendedor) {
-		
-		try {
-			Vendedor novoVendedor = vendedorService.incluir(vendedor);
+		Vendedor novoVendedor = vendedorService.incluir(vendedor);
 			
-			return ResponseEntity.status(HttpStatus.CREATED).body(novoVendedor);
-		
-		} catch (VendedorInvalidoException e) {
-			return ResponseEntity.badRequest().build();
-
-		} catch (Exception e) {
-			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-		}		
+		return ResponseEntity.status(HttpStatus.CREATED).body(novoVendedor);
 	}
 		
 	@PutMapping(value = "/{id}")
