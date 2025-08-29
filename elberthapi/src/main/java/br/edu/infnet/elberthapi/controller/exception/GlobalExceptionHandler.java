@@ -34,7 +34,7 @@ public class GlobalExceptionHandler {
     public ResponseEntity<Map<String, String>> handleValidationExceptions(VendedorInvalidoException ex) {
         Map<String, String> errors = new HashMap<>();
         
-        errors.put("Data/hora", LocalDateTime.now().toString());
+        errors.put("Datahora", LocalDateTime.now().toString());
         errors.put("Status", HttpStatus.BAD_REQUEST.toString());
         errors.put("Mensagem", ex.getMessage());
         
@@ -45,7 +45,7 @@ public class GlobalExceptionHandler {
     public ResponseEntity<Map<String, String>> handleValidationExceptions(VendedorNaoEncontradoException ex) {
         Map<String, String> errors = new HashMap<>();
         
-        errors.put("Data/hora", LocalDateTime.now().toString());
+        errors.put("Datahora", LocalDateTime.now().toString());
         errors.put("Status", HttpStatus.NOT_FOUND.toString());
         errors.put("Mensagem", ex.getMessage());
         
@@ -56,7 +56,7 @@ public class GlobalExceptionHandler {
     public ResponseEntity<Map<String, String>> handleValidationExceptions(IllegalArgumentException ex) {
         Map<String, String> errors = new HashMap<>();
         
-        errors.put("Data/hora", LocalDateTime.now().toString());
+        errors.put("Datahora", LocalDateTime.now().toString());
         errors.put("Status", HttpStatus.BAD_REQUEST.toString());
         errors.put("Mensagem", ex.getMessage());
         
@@ -67,7 +67,7 @@ public class GlobalExceptionHandler {
     public ResponseEntity<Map<String, String>> handleValidationExceptions(Exception ex) {
         Map<String, String> errors = new HashMap<>();
         
-        errors.put("Data/hora", LocalDateTime.now().toString());
+        errors.put("Datahora", LocalDateTime.now().toString());
         errors.put("Status", HttpStatus.INTERNAL_SERVER_ERROR.toString());
         errors.put("Mensagem", ex.getMessage());
         

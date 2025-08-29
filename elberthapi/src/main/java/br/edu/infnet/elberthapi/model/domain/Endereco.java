@@ -58,7 +58,6 @@ public class Endereco {
                    '}';
     }
 
-    // Getters e Setters (conforme o código original)
     public Integer getId() {
         return id;
     }

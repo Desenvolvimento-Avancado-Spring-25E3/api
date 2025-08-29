@@ -1,8 +1,6 @@
 package br.edu.infnet.elberthapi.model.service;
 
 import java.util.List;
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
 
 import org.springframework.stereotype.Service;
 
@@ -99,9 +97,14 @@ public class VendedorService implements CrudService<Vendedor, Integer> {
 	public Vendedor obterPorId(Integer id) {
 
 		if(id == null || id <= 0) {
-			throw new IllegalArgumentException("O ID para exclusão não pode ser nulo/zero!");			
+			throw new IllegalArgumentException("O ID para busca não pode ser nulo/zero!");			
 		}
 
 		return vendedorRepository.findById(id).orElseThrow(() -> new VendedorNaoEncontradoException("O vendedor com ID " + id + " não foi encontrado!"));
 	}
-} 
+
+	public Vendedor obterPorCpf(String cpf) {
+
+		return vendedorRepository.findByCpf(cpf).orElseThrow(() -> new VendedorNaoEncontradoException("O vendedor com CPF " + cpf + " não foi encontrado!"));
+	}
+}

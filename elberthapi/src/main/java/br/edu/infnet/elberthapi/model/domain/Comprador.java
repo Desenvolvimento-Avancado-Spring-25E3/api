@@ -3,12 +3,7 @@ package br.edu.infnet.elberthapi.model.domain;
 public class Comprador extends Pessoa {
 
 	private String fidelidade;
-	//TODO criar um segundo atributo
 
-	//TODO construtor do comprador
-	
-	//TODO toString do comprador
-	
 	@Override
 	public String obterTipo() {
 		return "Comprador";

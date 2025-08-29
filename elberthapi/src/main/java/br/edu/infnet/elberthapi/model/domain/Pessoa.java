@@ -28,7 +28,7 @@ public abstract class Pessoa {
     @Pattern(regexp = "\\d{3}\\.\\d{3}\\.\\d{3}-\\d{2}", message = "CPF inválido. Use o formato XXX.XXX.XXX-XX.")
     private String cpf;
 
-    @NotBlank(message = "O telefone é obrigatório.") // NOVO: Validação para telefone não vazio
+    @NotBlank(message = "O telefone é obrigatório.")
     @Pattern(regexp = "\\(?\\d{2}\\)?\\s?\\d{4,5}-?\\d{4}", message = "Telefone inválido. Use o formato (XX) XXXXX-XXXX ou (XX) XXXX-XXXX.")
     private String telefone;
 
