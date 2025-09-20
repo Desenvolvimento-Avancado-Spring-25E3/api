@@ -1,0 +1,36 @@
+Adriel Henrique Borges Cochito;123.456.789-01;adriel@al.infnet.edu.br;21987654321;1;7500.00;04538-132
+André Cardoso Truchlaeff;234.567.890-02;andre@al.infnet.edu.br;11998765432;2;8200.00;04707-900
+André Gonçalves Gaspar;345.678.901-03;gaspar@al.infnet.edu.br;31987651234;3;7800.00;04583-110
+André Luiz Costa Rabelo;456.789.012-04;rabelo@al.infnet.edu.br;41976543210;4;9100.00;13097-160
+Caio Vincenzo Reis Dima;567.890.123-05;caio@al.infnet.edu.br;51965432109;5;6900.00;20010-020
+Carlos Henrique Silva Correia de Araújo;678.901.234-06;carlos@al.infnet.edu.br;71954321098;6;8500.00;22775-904
+Claudio Cavalcante de Almeida;789.012.345-07;claudio@al.infnet.edu.br;61943210987;7;7200.00;80030-000
+Davi Valadares Rodrigues Feliciano;890.123.456-08;davi@al.infnet.edu.br;81932109876;8;9300.00;05425-070
+Eduardo Baliene Rodrigues Moreira de Jesus;901.234.567-09;eduardo@al.infnet.edu.br;85921098765;9;7900.00;04551-010
+Eduardo Nascimento Lima;012.345.678-10;lima@al.infnet.edu.br;92910987654;10;8800.00;22775-039
+Elias Antônio Flach;123.456.789-11;elias@al.infnet.edu.br;21987654321;11;7600.00;04538-132
+Emanoel Messias Pereira dos Santos;234.567.890-12;emanoel@al.infnet.edu.br;11998765432;12;9000.00;04707-900
+Gabriela Bueno Ribeiro;345.678.901-13;gabriela@al.infnet.edu.br;31987651234;13;7100.00;04583-110
+Heitor dos Santos Guedes da Silva;456.789.012-14;heitor@al.infnet.edu.br;41976543210;14;9500.00;13097-160
+João Anderson de Assis Freitas;567.890.123-15;joao@al.infnet.edu.br;51965432109;15;8300.00;20010-020
+Jose Hugo Soares Candido;678.901.234-16;jose@al.infnet.edu.br;71954321098;16;7400.00;22775-904
+Julio Cesar da Silva Jubilado;789.012.345-17;julio@al.infnet.edu.br;61943210987;17;9800.00;80030-000
+Karla Cristina Barros de Almeida Matias;890.123.456-18;karla@al.infnet.edu.br;81932109876;18;8100.00;05425-070
+Krossby Adhemar Camacho Alviz;901.234.567-19;krossby@al.infnet.edu.br;85921098765;19;7700.00;04551-010
+Leonardo da Silva Sousa;012.345.678-20;leonardo@al.infnet.edu.br;92910987654;20;8900.00;22775-039
+Luciana Mara da Silva;123.456.789-21;luciana@al.infnet.edu.br;21987654321;21;7000.00;04538-132
+Luiz Alfredo Pereira Dias;234.567.890-22;luiz@al.infnet.edu.br;11998765432;22;9400.00;04707-900
+Maria Clara Mussi da Silva;345.678.901-23;maria@al.infnet.edu.br;31987651234;23;8000.00;04583-110
+Matheus de Oliveira Maciel;456.789.012-24;matheus@al.infnet.edu.br;41976543210;24;7300.00;13097-160
+Matheus Jonathan dos Santos Tavares;567.890.123-25;tavares@al.infnet.edu.br;51965432109;25;9700.00;20010-020
+Maxwell Simões Mineo;678.901.234-26;maxwell@al.infnet.edu.br;71954321098;26;8600.00;22775-904
+Paulo Roberto Marchesin;789.012.345-27;paulo@al.infnet.edu.br;61943210987;27;7900.00;80030-000
+Raquel Niehues Andrade;890.123.456-28;raquel@al.infnet.edu.br;81932109876;28;9200.00;05425-070
+Robson Brasil Pinto;901.234.567-29;robson@al.infnet.edu.br;85921098765;29;8400.00;04551-010
+Ryan Santos da Conceição;012.345.678-30;ryan@al.infnet.edu.br;92910987654;30;7600.00;22775-039
+Sergio Diogo Antonio;123.456.789-31;sergio@al.infnet.edu.br;21987654321;31;9100.00;04538-132
+Thomás Vianna Pereira;234.567.890-32;thomas@al.infnet.edu.br;11998765432;32;8000.00;04707-900
+Victor Farias Casagrande;345.678.901-33;victor@al.infnet.edu.br;31987651234;33;7500.00;04583-110
+Vinicius Cesar Vianna;456.789.012-34;vinicius@al.infnet.edu.br;41976543210;34;9600.00;13097-160
+Vinicius Moreira Alves de Souza;567.890.123-35;souza@al.infnet.edu.br;51965432109;35;8300.00;20010-020
+Wosley da Costa Arruda;678.901.234-36;wosley@al.infnet.edu.br;71954321098;36;7200.00;22775-904
