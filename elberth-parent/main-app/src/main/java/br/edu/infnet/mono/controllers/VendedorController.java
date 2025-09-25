@@ -61,14 +61,14 @@ public class VendedorController {
 
     @DeleteMapping("/{id}")
     @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<Void> excluir(@PathVariable Long id) {
+    public ResponseEntity<Void> excluir(@PathVariable("id") Long id) {
         vendedorService.excluir(id);
         return ResponseEntity.noContent().build();
     }
 
     @PatchMapping("/{id}/desativar")
     @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<Void> desativar(@PathVariable Long id) {
+    public ResponseEntity<Void> desativar(@PathVariable("id") Long id) {
         vendedorService.desativar(id);
         return ResponseEntity.noContent().build();
     }

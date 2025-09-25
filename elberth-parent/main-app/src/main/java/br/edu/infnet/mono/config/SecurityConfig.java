@@ -4,6 +4,7 @@ import static org.springframework.security.config.Customizer.withDefaults;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -23,7 +24,13 @@ public class SecurityConfig {
 	@Bean
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 		http.csrf(csrf -> csrf.disable()).authorizeHttpRequests(
-				authorize -> authorize.requestMatchers("/h2-console/**").permitAll().anyRequest().authenticated()).httpBasic(withDefaults());
+				authorize -> authorize.requestMatchers("/h2-console/**").permitAll()
+
+				.requestMatchers(HttpMethod.GET, "/comentarios").hasAnyRole("ADMIN", "USER")
+				.requestMatchers(HttpMethod.DELETE, "/comentarios/**").hasRole("ADMIN")
+				
+				.anyRequest().authenticated())
+		.httpBasic(withDefaults());
 
 		http.headers(headers -> headers.frameOptions(frameOptions -> frameOptions.disable()));
 

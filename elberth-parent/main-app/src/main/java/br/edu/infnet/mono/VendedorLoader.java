@@ -13,15 +13,19 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 
 import br.edu.infnet.mono.dto.VendedorRequestDTO;
+import br.edu.infnet.mono.model.domain.Comentario;
+import br.edu.infnet.mono.model.service.ComentarioService;
 import br.edu.infnet.mono.model.service.VendedorService;
 
 @Component
 public class VendedorLoader implements ApplicationRunner {
 	
 	private final VendedorService vendedorService;
+	private final ComentarioService comentarioService;
 	
-	public VendedorLoader(VendedorService vendedorService) {
+	public VendedorLoader(VendedorService vendedorService, ComentarioService comentarioService) {
 		this.vendedorService = vendedorService;
+		this.comentarioService = comentarioService;
 	}
 
 	@Override
@@ -48,6 +52,9 @@ public class VendedorLoader implements ApplicationRunner {
                 try {
                     VendedorRequestDTO dto = parseToVendedorDTO(linha);
                     vendedorService.incluir(dto);
+                    
+                    comentarioService.incluir(new Comentario(dto.getNome(), dto.getEmail()));
+                    
                     processedVendedores.add(dto);
                 } catch (Exception e) {
                     System.err.println("Erro ao processar linha " +lineNumber+"["+linha+"]");
